@@ -1,0 +1,82 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "southcentralus"
+    },
+    "resourceGroupName": {
+      "value": "OnboardComputeValidation"
+    },
+    "cloudValidationName": {
+      "value": "validation-cv"
+    },
+    "executionPlanName": {
+      "value": "validation-ep"
+    },
+    "planConfiguration": {
+      "value": {
+        "certificationPackageReference": {
+          "osType": "Linux",
+          "architectureType": "X64",
+          "storageProfile": {
+            "osDiskImage": {
+              "sourceVhdUri": "<PASTE VHD SAS URL HERE>"
+            },
+            "dataDiskImages": []
+          },
+          "vmGenerationType": "V1",
+          "additionalProperties": {}
+        },
+        "validations": {
+          "BasicVMValidation": {
+            "testNames": [
+              "VM-Boot-Test"
+            ]
+          },
+          "MalwareValidation": {},
+          "VulnerabilityValidation": {},
+          "LinuxQualityValidations": {
+            "concurrency": 3,
+            "testSuite": [
+              {
+                "testNames": [
+                  "smoke_test",
+                  "validate_netvsc_reload",
+                  "verify_no_pre_exist_users",
+                  "verify_dns_name_resolution",
+                  "verify_mdatp_not_preinstalled",
+                  "verify_deployment_provision_premium_disk",
+                  "verify_deployment_provision_standard_ssd_disk",
+                  "verify_deployment_provision_ephemeral_managed_disk",
+                  "verify_deployment_provision_synthetic_nic",
+                  "verify_reboot_in_platform",
+                  "verify_stop_start_in_platform",
+                  "verify_bash_history_is_empty",
+                  "verify_client_active_interval",
+                  "verify_no_swap_on_osdisk",
+                  "verify_serial_console_is_enabled",
+                  "verify_openssl_version",
+                  "verify_azure_64bit_os",
+                  "verify_waagent_version",
+                  "verify_python_version",
+                  "verify_omi_version"
+                ],
+                "testArea": [],
+                "testCategory": [],
+                "testTags": [],
+                "testPriority": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "executionPlanRunName": {
+      "value": "validation-eprun-01"
+    },
+    "azValidationRpPrincipalType": {
+      "value": "ServicePrincipal"
+    }
+  }
+}

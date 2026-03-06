@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="AzCertify Self-Serve Image Validation onboarding flow">
+  <defs>
+    <style>
+      .title{font:600 18px 'Segoe UI',Arial,sans-serif; fill:#1f1f1f;}
+      .label{font:600 14px 'Segoe UI',Arial,sans-serif; fill:#1f1f1f;}
+      .sub{font:400 12px 'Segoe UI',Arial,sans-serif; fill:#4b4b4b;}
+      .box{fill:#f5f9ff; stroke:#0078d4; stroke-width:2; rx:14;}
+      .box2{fill:#ffffff; stroke:#0078d4; stroke-width:2; rx:14;}
+      .pill{fill:#0078d4; rx:10;}
+      .pillText{font:700 11px 'Segoe UI',Arial,sans-serif; fill:#ffffff;}
+      .arrow{stroke:#605e5c; stroke-width:2.5; fill:none; marker-end:url(#mEnd);} 
+      .loop{stroke:#a4262c; stroke-width:2.5; fill:none; marker-end:url(#mEndRed);} 
+      .note{font:400 11px 'Segoe UI',Arial,sans-serif; fill:#605e5c;}
+    </style>
+    <marker id="mEnd" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#605e5c" />
+    </marker>
+    <marker id="mEndRed" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a4262c" />
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="title">Compute Validation – Onboarding Flow (Private Preview)</text>
+
+  <!-- Row 1 -->
+  <rect x="24" y="70" width="250" height="92" class="box" />
+  <rect x="40" y="82" width="92" height="20" class="pill" />
+  <text x="50" y="97" class="pillText">PREVIEW</text>
+  <text x="40" y="122" class="label">Subscription allowlisted</text>
+  <text x="40" y="144" class="sub">Customer shares subscription ID</text>
+
+  <rect x="310" y="70" width="250" height="92" class="box" />
+  <rect x="326" y="82" width="120" height="20" class="pill" />
+  <text x="336" y="97" class="pillText">PREREQUISITES</text>
+  <text x="326" y="122" class="label">Register RPs and Features</text>
+  <text x="326" y="144" class="sub">Microsoft.Validate,Microsoft.Microsoft.AzureImageTestingForLinux</text>
+
+  <rect x="596" y="70" width="250" height="92" class="box" />
+  <rect x="612" y="82" width="86" height="20" class="pill" />
+  <text x="622" y="97" class="pillText">CREATE</text>
+  <text x="612" y="122" class="label">CloudValidation</text>
+  <text x="612" y="144" class="sub">Top-level validation container</text>
+
+  <rect x="882" y="70" width="294" height="92" class="box" />
+  <rect x="898" y="82" width="86" height="20" class="pill" />
+  <text x="908" y="97" class="pillText">DEFINE</text>
+  <text x="898" y="122" class="label">ValidationExecutionPlan</text>
+  <text x="898" y="144" class="sub">Image + suites + configuration</text>
+
+  <!-- arrows row 1 -->
+  <path d="M274 116 L310 116" class="arrow" />
+  <path d="M560 116 L596 116" class="arrow" />
+  <path d="M846 116 L882 116" class="arrow" />
+
+  <!-- Row 2 -->
+  <rect x="24" y="215" width="250" height="92" class="box2" />
+  <rect x="40" y="227" width="86" height="20" class="pill" />
+  <text x="50" y="242" class="pillText">RUN</text>
+  <text x="40" y="267" class="label">ExecutionPlanRun</text>
+  <text x="40" y="289" class="sub">Triggers validation execution</text>
+
+  <rect x="310" y="215" width="250" height="92" class="box2" />
+  <rect x="326" y="227" width="110" height="20" class="pill" />
+  <text x="336" y="242" class="pillText">MONITOR</text>
+  <text x="326" y="267" class="label">Poll LRO status</text>
+  <text x="326" y="289" class="sub">azure-asyncoperation + GET</text>
+
+  <rect x="596" y="215" width="250" height="92" class="box2" />
+  <rect x="612" y="227" width="92" height="20" class="pill" />
+  <text x="622" y="242" class="pillText">RESULTS</text>
+  <text x="612" y="267" class="label">Review testRuns</text>
+  <text x="612" y="289" class="sub">Success / Failed + remediation</text>
+
+  <rect x="882" y="215" width="294" height="92" class="box2" />
+  <rect x="898" y="227" width="140" height="20" class="pill" />
+  <text x="908" y="242" class="pillText">NEXT STEP</text>
+  <text x="898" y="267" class="label">Proceed to Marketplace</text>
+  <text x="898" y="289" class="sub">Publish-time certification remains final</text>
+
+  <!-- arrows row 2 -->
+  <path d="M274 261 L310 261" class="arrow" />
+  <path d="M560 261 L596 261" class="arrow" />
+  <path d="M846 261 L882 261" class="arrow" />
+
+  <!-- Connect Row 1 to Row 2 (plan -> run) -->
+  <path d="M1029 162 L1029 198 L149 198 L149 215" class="arrow" />
+
+  <!-- Iteration loop (results -> plan) -->
+  <path d="M721 307 C721 360 980 360 980 162" class="loop" />
+  <text x="760" y="378" class="note">Fix issues and rerun by creating a new ExecutionPlanRun (update plan if needed)</text>
+
+</svg>
