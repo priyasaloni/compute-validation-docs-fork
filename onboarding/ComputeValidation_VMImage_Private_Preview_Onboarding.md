@@ -370,7 +370,7 @@ During execution, Compute Validation creates:
 - If the **default VM size cannot be provisioned** due to:
   - Regional capacity constraints, or
   - Subscription quota limitations  
-A **recommended VM size must be explicitly provided** in the validation request.
+  - A **recommended VM size must be explicitly provided** in the validation request.
 
 #### Failure Scenarios
 - Insufficient quota may result in **validation failures during resource provisioning**, before test execution begins.
