@@ -189,7 +189,7 @@ Results are available in the `testRuns` array of an ExecutionPlanRun.
 
 - Malware Scan
 - Boot Validation
-- Linux Quality Validations (LISA tests https://aka.ms/lisa) 
+- Linux Quality Validations ([LISA tests](https://aka.ms/lisa))
 - Vulnerability Scan (Microsoft Defender)
 
 ## 8.1 API Specification (Swagger / OpenAPI)
@@ -349,7 +349,73 @@ az deployment sub create   --name computevalidation-onboarding   --location <loc
 
 ---
 
-## 13. Support
+## 13. Quota and Resource Prerequisites
+
+Compute Validation provisions Azure resources **in the customer’s subscription** to execute validation workloads.  
+Sufficient **compute, storage, and regional quota** must be available prior to triggering a validation run.
+
+### BasicVMValidation
+
+`BasicVMValidation` performs fundamental functional checks (for example, VM boot validation) by provisioning temporary Azure resources in the customer subscription.
+
+#### Resources Provisioned
+During execution, Compute Validation creates:
+- A **Virtual Machine**
+  - Default size: `Standard_DS_v2`
+- A **Storage Account**
+  - Used for test artifacts and intermediate validation data
+
+#### Quota Considerations
+- Successful execution depends on the availability of **compute cores and storage quota** in the selected region.
+- If the **default VM size cannot be provisioned** due to:
+  - Regional capacity constraints, or
+  - Subscription quota limitations  
+A **recommended VM size must be explicitly provided** in the validation request.
+
+#### Failure Scenarios
+- Insufficient quota may result in **validation failures during resource provisioning**, before test execution begins.
+
+> **Note**  
+> Compute Validation does **not** request or manage quota increases on behalf of customers.  
+> Customers are responsible for ensuring adequate quota availability before running validations.
+
+### LinuxQualityValidations (LISA)
+
+`LinuxQualityValidations` executes Linux quality test cases as defined by [**LISA**](https://aka.ms/lisa).
+
+Before triggering these validations, customers should ensure that **sufficient resources are available** to run the required LISA test suites.
+
+#### Recommended Quota Guidance
+
+The table below lists **recommended resource availability** for running [**LISA T4 test cases**](https://mslisa.readthedocs.io/en/main/run_test/microsoft_tests.html#test-tier) with a **concurrency of 2**.  
+Publishers may use this as **guidance** when planning quota requirements.
+
+| Resource SKU Family | Cores Count | Feature / Capability |
+|--------------------|-------------|----------------------|
+| Standard BS Family | 34 | General |
+| Standard DSv2 Family | 328 | General |
+| Standard DADSv5 Family | 52 | Hibernation |
+| Standard LSv2 Family | 256 | NVMe |
+| Standard NCSv3 Family | 60 | GPU |
+| Standard HBv3 Family | 16 | HPC |
+| Standard FSv2 Family | 288 | DPDK (isolated resource required) |
+| Standard MSv2 Family | 416 | Kdump |
+| Standard EADSv5 Family | 2 | General (minimum VM size with 6 data disks) |
+| Standard DCADCCV5 Family | 4 | Confidential VM (CVM) |
+| Standard DDv5 Family | 4 | General |
+| Standard NDASv4_A100 Family | 96 | GPU (maximum GPU provisioning) |
+| Standard Bpsv2 Family | 148 | ARM64 |
+| Standard DPDSv5 Family | 96 | ARM64 |
+| Standard EPDSv5 Family | 256 | ARM64 |
+| Standard DPLDSv5 Family | 128 | ARM64 |
+| Standard EPSv5 Family | 160 | ARM64 |
+| Standard DPLSv5 Family | 128 | ARM64 |
+
+For reliable execution, **quota readiness should be validated before triggering any validation runs**.
+
+---
+
+## 14. Support
 
 When contacting support, include the following information:
 
