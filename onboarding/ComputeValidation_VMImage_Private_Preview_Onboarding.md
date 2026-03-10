@@ -356,7 +356,7 @@ Sufficient **compute, storage, and regional quota** must be available prior to t
 
 ### BasicVMValidation
 
-`BasicVMValidation` performs fundamental functional checks (for example, VM boot validation). As part of performing BasicVMValidation, Compute Validation provisions temporary Azure resources in the customer’s subscription to execute these tests.
+`BasicVMValidation` performs fundamental functional checks (for example, VM boot validation). As part of performing BasicVMValidation, Compute Validation provisions temporary Azure resources in the customer's subscription to execute these tests.
 
 #### Resources Provisioned
 During execution, Compute Validation creates:
