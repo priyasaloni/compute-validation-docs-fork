@@ -392,7 +392,7 @@ Customers may use this as **guidance** when planning quota requirements.
 | Standard DSv2 Family | 328 | General |
 | Standard DADSv5 Family | 52 | Hibernation |
 | Standard LSv2 Family | 256 | NVMe |
-| Standard NCSv3 Family | 60 | GPU |
+| Standard NCsv3 Family | 60 | GPU |
 | Standard HBv3 Family | 16 | HPC |
 | Standard FSv2 Family | 288 | DPDK (isolated resource required) |
 | Standard MSv2 Family | 416 | Kdump |
