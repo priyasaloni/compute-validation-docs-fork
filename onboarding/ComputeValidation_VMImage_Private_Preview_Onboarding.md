@@ -438,7 +438,7 @@ Compute Validation executions can legitimately take **several hours**. ARM deplo
 
 **Guidance**
 - Long-running validation does not always indicate a failure
-- Check ValidationExecutionPlanRun state
+- Check `ExecutionPlanRun` state
 - Avoid retrying if state is `Accepted`
 
 ---
