@@ -388,7 +388,8 @@ Before triggering these validations, customers should ensure that **sufficient r
 #### Recommended Quota Guidance
 
 The table below lists **recommended resource availability** for running [**LISA T4 test cases**](https://mslisa.readthedocs.io/en/latest/run_test/microsoft_tests.html#test-tier) with a **concurrency of 2**.  
-Customers may use this as **guidance** when planning quota requirements.
+Customers may use this as **guidance** when planning quota requirements. 
+> **Note:** LISA tests currently run in the **West US 2 (`westus2`)** region. Work is in progress to consolidate all tests into a single region.
 
 | Resource SKU Family | Cores Count | Feature / Capability |
 |--------------------|-------------|----------------------|
@@ -419,7 +420,101 @@ For reliable execution, **quota readiness should be validated before triggering 
 
 ---
 
-## 14. Support
+## 14. Frequently Asked Questions (FAQ)
+
+#### MP‑1. My onboarding ARM deployment fails with DeploymentFailed or ResourceDeploymentFailure. What should I do?
+
+**Symptom**
+- DeploymentFailed
+- ResourceDeploymentFailure
+- RequestTimeout
+
+Often during:
+- deployCloudValidationAndPlan
+- validation-ep / validation-eprun-01
+
+**Root cause**
+Compute Validation executions can legitimately take **several hours**. ARM deployments have **fixed timeout limits**, which can cause ARM to mark the deployment as failed even though backend validation continues.
+
+**Guidance**
+- Long-running validation does not always indicate a failure
+- Check `ExecutionPlanRun` state
+- Avoid retrying if state is `Accepted`
+
+---
+
+#### MP‑2. InvalidResourceOperation with state Accepted
+
+ARM does not allow delete/update while provisioning.
+
+**Guidance**
+- Wait for terminal state (Succeeded / Failed)
+- If stuck, delete the managed resource group (for example, `<cloudvalidationName>-mrg`) and recreate with a new CloudValidation name
+
+---
+
+#### MP‑3. osDiskImage.sourceVhdUri invalid
+
+**Requirements**
+- Azure Blob SAS URL only
+- Minimum 48 hours expiry
+- Support for disk-generated SAS URLs was recently added.
+
+---
+
+#### MP-4. External VHD URLs
+
+Not supported in preview.
+
+---
+
+#### MP-5. Validation duration
+
+- Boot: minutes
+- Linux Quality Validations: tens of minutes
+- Malware scans: several hours to 3 business days in certain cases
+- Vulnerability scans: Up to 30 hours
+- ARM timeout does not reflect execution status.
+
+---
+
+#### MP-6. Is Microsoft Defender for Cloud required to use Compute Validation?
+
+No. Microsoft Defender for Cloud is **not a hard blocker** for participating in the Compute Validation Service private preview.
+
+It is referenced in the onboarding documentation because our current vulnerability and potentially future malware validation signals rely on Defender-backed scanning to establish a consistent security baseline across environments. We also recognize that enabling Defender can have **per‑VM cost implications**, especially in larger subscriptions.
+
+fyi, Defender evaluates each VM resource individually and billing is also per-VM.
+
+---
+
+#### MP-7. What options do I have if Defender for Cloud cost is a concern?
+
+If cost is a primary concern, the following flexibility options are available during the private preview:
+
+- **Use a separate or isolated subscription (recommended):**  
+  Some customers choose to use a small, isolated subscription that contains only the virtual machines they want to validate using Compute Validation. Defender can then be enabled in that subscription without affecting the rest of the environment, keeping costs scoped and predictable.
+
+- **Use Defender for Servers Plan 1 instead of Plan 2:**  
+  Plan 1 along with Defender Cloud Security Posture Management (CSPM), has a lower cost footprint and supports vulnerability assessment.  
+  *Trade‑off:* You do not get advanced runtime protections that are included with Plan 2.
+
+- **Exclude vulnerability validation from required pass criteria:** 
+  If vulnerability scanning is not a priority for your environment, the **vulnerability validation test can be excluded** from the list of tests to execute during `ExecutionPlan` resource creation. This allows you to proceed with other validations while avoiding Defender enablement.
+
+---
+
+#### MP-8. Was Microsoft Defender for Cloud a known dependency?
+
+Yes. Defender-backed scanning was a **known dependency in the initial implementation** of Compute Validation.
+
+One of the goals of the private preview is to **validate and refine requirements like this** based on real customer feedback—especially around cost, scope, and operational impact—before broader rollout.
+
+---
+
+*This FAQ will evolve based on preview feedback.*
+
+## 15. Support
 
 When contacting support, include the following information:
 
