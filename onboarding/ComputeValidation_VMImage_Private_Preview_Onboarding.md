@@ -438,7 +438,7 @@ Compute Validation executions can legitimately take **several hours**. ARM deplo
 
 **Guidance**
 - Long-running validation does not always indicate a failure. Your validations are still running.
-- Check the results directly via running the **GetResults script**. If **Vulnerability Scans** are included, result poulation can take more than 30 hours. If **Vulnerability Scans** are not included, try checking results after 6-7 hours.
+- Check the results directly via running the **GetResults script** (Refer step 5 of [Section 5](https://github.com/priyasaloni/compute-validation-docs-fork/blob/main/onboarding/ComputeValidation_VMImage_Private_Preview_Onboarding.md#5-how-to-get-started)). If **Vulnerability Scans** are included, result poulation can take more than 30 hours. If **Vulnerability Scans** are not included, try checking results after 6-7 hours.
 - Avoid retrying if provisioning state is `Accepted`.
 
 ---
