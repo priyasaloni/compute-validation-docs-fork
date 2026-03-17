@@ -463,13 +463,13 @@ ARM does not allow delete/update while provisioning.
 
 ---
 
-#### MP‑4. External VHD URLs
+#### MP-4. External VHD URLs
 
 Not supported in preview.
 
 ---
 
-#### MP‑5. Validation duration
+#### MP-5. Validation duration
 
 - Boot: minutes
 - Linux Quality Validations: tens of minutes
