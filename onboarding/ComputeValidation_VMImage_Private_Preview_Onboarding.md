@@ -505,7 +505,7 @@ If cost is a primary concern, the following flexibility options are available du
 
 ---
 
-### MP-8. Was Microsoft Defender for Cloud a known dependency?
+#### MP-8. Was Microsoft Defender for Cloud a known dependency?
 
 Yes. Defender-backed scanning was a **known dependency in the initial implementation** of Compute Validation.
 
