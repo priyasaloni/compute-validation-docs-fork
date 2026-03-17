@@ -449,7 +449,7 @@ ARM does not allow delete/update while provisioning.
 
 **Guidance**
 - Wait for terminal state (Succeeded / Failed)
-- If stuck, delete RG and recreate with new CloudValidation name
+- If stuck, delete the managed resource group (for example, `<cloudvalidationName>-mrg`) and recreate with a new CloudValidation name
 
 ---
 
