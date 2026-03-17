@@ -125,6 +125,8 @@ Prepare image (VHD SAS URI, ensure minimum 1 day expiry is provided to the VHD, 
 - Deploy the provided ARM template using the automation command below: the arm paramter file demands AzValidation RP service principle which you captured 4.3 steps. You can also again run the below command to get it 
 ``` az ad sp show --id f877b90d-59ee-40e3-8d2c-215dae4c80d8 --query id -o tsv ```
 
+The arm template also ask's for a cloudValidationName and ExecutionPlanName. Please enter some unique name like validationcv123 and executionplan123 which you have never used.
+
 ```powershell
 az deployment sub create   --name computevalidation-onboarding   --location <location>   --template-file .\computevalidation.subscription.template.json   --parameters .\computevalidation.subscription.parameters.json
 ```

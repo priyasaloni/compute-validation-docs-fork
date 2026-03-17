@@ -8,12 +8,6 @@
     "resourceGroupName": {
       "value": "OnboardComputeValidation"
     },
-    "cloudValidationName": {
-      "value": "validation-cv"
-    },
-    "executionPlanName": {
-      "value": "validation-ep"
-    },
     "planConfiguration": {
       "value": {
         "certificationPackageReference": {
