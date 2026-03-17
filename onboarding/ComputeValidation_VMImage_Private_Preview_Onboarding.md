@@ -437,9 +437,9 @@ Often during:
 Compute Validation executions can legitimately take **several hours**. ARM deployments have **fixed timeout limits**, which can cause ARM to mark the deployment as failed even though backend validation continues.
 
 **Guidance**
-- Long-running validation does not always indicate a failure
-- Check `ExecutionPlanRun` state
-- Avoid retrying if state is `Accepted`
+- Long-running validation does not always indicate a failure. Your validation are still running.
+- Check the results directly via running the **GetResults script**. If **Vulnerability Scans** are included,result poulation can take more than 30 hours. If **Vulnerability Scans** are not included, try checking results within 6-7 hours.
+- Avoid retrying if provisioning state is `Accepted`.
 
 ---
 
