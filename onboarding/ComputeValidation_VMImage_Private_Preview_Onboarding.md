@@ -474,8 +474,8 @@ Not supported in preview.
 - Boot: minutes
 - Linux Quality Validations: tens of minutes
 - Malware scans: several hours to 3 business days in certain cases
-- Vulnerability scans: Upto 30hours
-ARM timeout does not reflect execution status.
+- Vulnerability scans: Up to 30 hours
+- ARM timeout does not reflect execution status.
 
 ---
 
