@@ -229,8 +229,8 @@ function Ensure-RoleAssignment {
 }
 
 function Resolve-LinuxPermissionsScript {
-  # Your flow runs the Python port (CustomerScriptSetupLinuxTest.py)
-  $candidate = Join-Path $PSScriptRoot 'CustomerScriptSetupLinuuxTest.py'
+  # Run the PowerShell permissions script
+  $candidate = Join-Path $PSScriptRoot 'CustomScriptLinuxTest-powershell.ps1'
   if (Test-Path $candidate) { return (Resolve-Path $candidate).Path }
   throw "Missing Linux advanced test permissions script: $candidate"
 }
